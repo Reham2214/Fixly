@@ -28,6 +28,9 @@ namespace Fixly.Models
         [ForeignKey("ProviderId")]
         public ApplicationUser Provider { get; set; }
 
+        [Required(ErrorMessage ="Service problem is required.")]
+        public string Service {get; set;}
+
         [Required(ErrorMessage = "Requested date is required.")]
         [DataType(DataType.Date)]
         public DateTime RequestedDate { get; set; }
