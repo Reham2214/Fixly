@@ -13,80 +13,15 @@
 
 <body>
 
- 
-    @* <header class="px-2 pt-2">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm rounded-4"
-             style="color: #040738; background-color: #fff; padding: 0.5rem 1rem;">
-
-            <a class="fixly-logo" asp-controller="Home" asp-action="Index">
-                <span class="logo-dot"></span>
-                <span>Fixly</span>
-            </a>
-
-            <div class="fixly-menu">
-
-                <a class="search-btn" asp-controller="ServiceProviders" asp-action="Search">
-                    Search Service Providers
-                </a>
-
-                <a class="menu-link" asp-controller="CustomerRequests" asp-action="Index">
-                    My Requests
-                </a>
-
-                <a class="menu-link" asp-controller="Profile" asp-action="Index">
-                    Profile
-                </a>
-
-                <form asp-controller="Account" asp-action="Logout" method="post">
-                    <button type="submit" class="logout-btn">
-                        Logout
-                    </button>
-                </form>
-
-                >>>>>>> Stashed changes
-            </div>
-
-        </nav>
-    </header> *@
-    @* <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Fixly</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home"
-                               asp-action="Privacy">Privacy</a>
-                        </li>
-                        @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Customer"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-controller="CustomerRequests" asp-action="MyRequests">My
-                                    Requests</a>
-                                </li>
-                            }
-
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header> *@
     <header class="px-2 pt-2">
         <nav class="fixly-navbar">
 
-            <a class="fixly-logo" asp-controller="" asp-action="">
+            <a class="fixly-logo me-5" asp-controller="" asp-action="">
                 <span class="logo-dot"></span>
                 <span>Fixly</span>
             </a>
 
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <div class="navbar-collapse collapse d-sm-inline-flex align-items-center gap-4 ms-auto">
 
                 @if (User.Identity?.IsAuthenticated == true)
                 {
@@ -94,11 +29,11 @@
                     @if (User.IsInRole("Customer"))
                     {
 
-                        <a class="search-btn" asp-controller="ServiceProviders" asp-action="Search">
+                        <a class="menu-link" asp-controller="Customer" asp-action="Index">
                             Search Service Providers
                         </a>
 
-                        <a class="menu-link" asp-controller="CustomerRequests" asp-action="MyRequests">
+                        <a class="menu-link" asp-controller="Customer" asp-action="MyRequests">
                             My Requests
                         </a>
 
@@ -108,13 +43,13 @@
                     }
 
                     @* Provider *@
-                    else if (User.IsInRole("Provider"))
+                    else if (User.IsInRole("Service Provider"))
                     {
-                        <a class="search-btn" asp-controller="" asp-action="">
+                        <a class="menu-link" asp-controller="ServiceProviders" asp-action="Index">
                             Incoming Requests
                         </a>
 
-                        <a class="menu-link" asp-controller="" asp-action="">
+                        <a class="menu-link" asp-controller="Profile" asp-action="Index">
                             Profile
                         </a>
                     }

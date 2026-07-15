@@ -129,7 +129,7 @@ namespace Fixly.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ServiceProviderProfiles");
+                    b.ToTable("ServiceProviderProfiles", (string)null);
                 });
 
             modelBuilder.Entity("Fixly.Models.ServiceRequest", b =>
@@ -172,7 +172,7 @@ namespace Fixly.Migrations
 
                     b.HasIndex("ProviderId");
 
-                    b.ToTable("ServiceRequests");
+                    b.ToTable("ServiceRequests", (string)null);
                 });
 
             modelBuilder.Entity("Fixly.Models.WorkImage", b =>
@@ -194,7 +194,7 @@ namespace Fixly.Migrations
 
                     b.HasIndex("ServiceProviderProfileId");
 
-                    b.ToTable("WorkImages");
+                    b.ToTable("WorkImages", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -356,7 +356,7 @@ namespace Fixly.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ServiceProviders");
+                    b.ToTable("ServiceProviders", (string)null);
                 });
 
             modelBuilder.Entity("Fixly.Models.ServiceProviderProfile", b =>

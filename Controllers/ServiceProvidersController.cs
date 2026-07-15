@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Fixly.Data;
+using Fixly.Models;
+using System.Security.Claims;
 
 public class ServiceProvidersController : Controller
 {
@@ -11,23 +13,25 @@ public class ServiceProvidersController : Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Search(string? category, string? city)
+    public async Task<IActionResult> Index()
     {
-        var providers = _context.ServiceProviderProfiles
-            .Include(p => p.User)
-            .AsQueryable();
+        var providerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        if (!string.IsNullOrWhiteSpace(category))
-        {
-            providers = providers.Where(p => p.ServiceCategory == category);
-        }
+        var requests = await _context.ServiceRequests
+            .Include(r => r.Customer)
+            .Where(r => r.ProviderId == providerId)
+            .Join(
+                _context.ServiceProviderProfiles,
+                request => request.ProviderId,
+                profile => profile.UserId,
+                (request, profile) => new MyRequestViewModel
+                {
+                    Request = request,
+                    ServiceCategory = profile.ServiceCategory
+                })
+            .OrderByDescending(x => x.Request.RequestedDate)
+            .ToListAsync();
 
-        if (!string.IsNullOrWhiteSpace(city))
-        {
-            providers = providers.Where(p => p.User.City == city);
-        }
-
-        return View(await providers.ToListAsync());
+        return View(requests);
     }
-
 }

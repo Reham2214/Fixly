@@ -1,0 +1,116 @@
+@model List<Fixly.Models.MyRequestViewModel>
+
+<style>
+    .table thead th {
+        color: var(--bs-secondary-color);
+    }
+</style>
+
+<div class="container mt-5">
+
+    <h2 class="fw-bold">My Requests</h2>
+    <p class="text-secondary">Track the status of the service requests you've sent.</p>
+
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-auto">
+            <select name="statusFilter" class="form-select" onchange="this.form.submit()">
+                <option value="">All Statuses</option>
+                @foreach (var status in Html.GetEnumSelectList<Fixly.Models.RequestStatus>())
+                {
+                    <option value="@status.Value" selected="@(status.Value == ViewBag.StatusFilter)">
+                        @status.Text
+                    </option>
+                }
+            </select>
+        </div>
+        <div style="width: 450px;">
+            <input type="text" name="searchTerm" value="@ViewBag.SearchTerm" 
+                   class="form-control" placeholder="Search by provider..."/>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <div class="card shadow border-0 rounded-2">
+        <div class="card-body rounded-4">
+
+            @if (!Model.Any())
+            {
+                <p class="text-center text-secondary py-4">No requests found.</p>
+            }
+            else
+            {
+                <table class="table align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Provider</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Problem</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+{
+    var req = item.Request;
+
+    <tr>
+        <td class="fw-semibold">
+            @req.Provider.FullName
+        </td>
+
+        <td>
+            <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill">
+                @item.ServiceCategory
+            </span>
+        </td>
+
+        <td>
+            @req.RequestedDate.ToString("yyyy-MM-dd")
+        </td>
+
+        <td>
+            @req.RequestedTime
+        </td>
+
+        <td>
+            @req.ProblemDescription
+        </td>
+
+        <td>
+            @{
+                var badgeClass = req.Status switch
+                {
+                    Fixly.Models.RequestStatus.Pending
+                        => "bg-warning-subtle text-warning",
+
+                    Fixly.Models.RequestStatus.Accepted
+                        => "bg-success-subtle text-success",
+
+                    Fixly.Models.RequestStatus.Rejected
+                        => "bg-danger-subtle text-danger",
+
+                    Fixly.Models.RequestStatus.Completed
+                        => "bg-secondary-subtle text-secondary",
+
+                    _ => "bg-light text-dark"
+                };
+            }
+
+            <span class="badge @badgeClass px-3 py-2 rounded-pill">
+                @req.Status
+            </span>
+        </td>
+    </tr>
+}
+                    </tbody>
+                </table>
+            }
+
+        </div>
+    </div>
+
+</div>

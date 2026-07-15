@@ -155,14 +155,25 @@ namespace Fixly.Controllers
             switch (role)
             {
                 case "Customer":
-                    return RedirectToAction("Index", "Provider");
+                    return RedirectToAction("Index", "Customer");
 
                 case "Service Provider":
-                    return RedirectToAction("Incoming", "Requests");
+                    return RedirectToAction("Index", "ServiceProviders");
 
                 default:
                     return RedirectToAction("Login");
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            // تنظيف جلسة الدخول وحذف ملف تعريف الارتباط (Cookie)
+            await _signInManager.SignOutAsync();
+            
+            // توجيه المستخدم إلى الصفحة الرئيسية بعد تسجيل الخروج
+            return RedirectToAction("Login", "Account");
         }
            
     }

@@ -1,0 +1,95 @@
+@model Fixly.Models.ServiceRequest
+
+@{
+    ViewData["Title"] = "Request Service";
+}
+
+<div class="container py-5">
+
+    <h2 class="fw-bold">Request a New Service</h2>
+
+    <p class="text-secondary mb-4">
+        Describe your problem and choose a suitable date and time.
+    </p>
+
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-4">
+
+            <form asp-controller="Customer"
+                  asp-action="RequestService"
+                  method="post">
+
+                <input type="hidden" asp-for="ProviderId" />
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3">
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ProblemDescription"
+                           class="form-label fw-semibold">
+                        Problem Description
+                    </label>
+
+                    <textarea asp-for="ProblemDescription"
+                              class="form-control"
+                              rows="5"
+                              placeholder="Describe the problem...">
+                    </textarea>
+
+                    <span asp-validation-for="ProblemDescription"
+                          class="text-danger">
+                    </span>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="RequestedDate"
+                               class="form-label fw-semibold">
+                            Requested Date
+                        </label>
+
+                        <input asp-for="RequestedDate"
+                               type="date"
+                               class="form-control" />
+
+                        <span asp-validation-for="RequestedDate"
+                              class="text-danger">
+                        </span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="RequestedTime"
+                               class="form-label fw-semibold">
+                            Requested Time
+                        </label>
+
+                        <input asp-for="RequestedTime"
+                               type="time"
+                               class="form-control" />
+
+                        <span asp-validation-for="RequestedTime"
+                              class="text-danger">
+                        </span>
+                    </div>
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-primary rounded-pill px-4">
+                    Send Request
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
