@@ -1,0 +1,21 @@
+@model project.Models.ServiceRequest
+
+@{
+    ViewData["Title"] = "تم استلام طلبك";
+}
+
+<div class="container mt-5 text-center" dir="rtl">
+    <div class="card shadow p-5">
+        <h2 class="text-success">شكرًا لك، @Model.CustomerName!</h2>
+        <p class="lead">تم استلام طلبك بنجاح. رقم الطلب الخاص بك هو: <strong>#@Model.Id</strong></p>
+        <hr />
+        <div class="text-start d-inline-block" style="max-width: 400px; text-align: right !important;">
+            <p><strong>نوع الخدمة:</strong> @Model.ServiceType</p>
+            <p><strong>تاريخ الطلب:</strong> @Model.RequestDate.ToString("yyyy-MM-dd HH:mm")</p>
+            <p><strong>حالة الطلب:</strong> قيد المراجعة ⏳</p>
+        </div>
+        <div class="mt-4">
+            <a asp-action="Create" class="btn btn-outline-primary">تقديم طلب جديد</a>
+        </div>
+    </div>
+</div>
