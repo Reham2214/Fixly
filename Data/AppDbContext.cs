@@ -14,6 +14,7 @@ namespace Fixly.Data
         public DbSet<ServiceProviderProfile> ServiceProviderProfiles { get; set; }
         public DbSet<ServiceRequest> ServiceRequests { get; set; }
         public DbSet<WorkImage> WorkImages { get; set; }
+        public DbSet<ApplicationUser> Customers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -36,7 +36,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach (var req in ViewBag.ServiceRequest)
+                    @foreach (var req in Model)
                     {
                         <tr>
                             <td class="fw-semibold">
@@ -79,48 +79,7 @@
                         </tr>
                     }
 
-                    @* @foreach(var req in Model)
-                    {
-                        <tr>
-                            <td class="fw-semibold">
-                                @req.Customer
-                            </td>
 
-                            <td>
-                                <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill">
-                                    @req.Provider
-                                </span>
-                            </td>
-
-                            <td>
-                                @req.RequestedDate.ToString("yyyy-MM-dd")
-                            </td>
-
-                            <td>
-                                @req.RequestedTime
-                            </td>
-
-                            <td>
-                                @req.ProblemDescription
-                            </td>
-
-                            <td>
-                                <span class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill">
-                                    @req.Status
-                                </span>
-                            </td>
-
-                            <td>
-                                <button class="btn btn-success btn-sm">
-                                    Accept
-                                </button>
-
-                                <button class="btn btn-danger btn-sm">
-                                    Reject
-                                </button>
-                            </td>
-                        </tr>
-                    } *@
                 </tbody>
             </table>
 
