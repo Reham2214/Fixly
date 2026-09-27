@@ -19,9 +19,11 @@ Customers can browse and search for service providers by **service category and 
 
 <img width="1600" height="900" alt="Customer page" src="https://github.com/user-attachments/assets/0190a716-e1cc-4730-aac5-d1bff45051e6" />
 
+
 **Service Request**
 
 <img width="1600" height="900" alt="Rquest a new service" src="https://github.com/user-attachments/assets/810fd655-edf4-4a6c-a452-7dcb60b31acb" />
+
 
 **My Requests**
 
