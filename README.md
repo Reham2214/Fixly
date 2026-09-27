@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Fixly is a service marketplace web application developed as part of the Tuwaiq Academy program. It connects customers with local service providers such as plumbers, electricians, and cleaners.
+Fixly is a service marketplace web application developed as part of the **Tuwaiq Academy** program. It connects customers with local service providers such as plumbers, electricians, and cleaners.
 
 Customers can browse and search for service providers by **service category and city**, submit service requests, and track their requests. Service providers can view and manage their incoming requests.
 
