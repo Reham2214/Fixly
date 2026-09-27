@@ -11,7 +11,6 @@ Customers can browse and search for service providers by **service category and 
 ### Customer
 
 * Browse available service providers.
-* Search providers by **service category** and **city**.
 * Submit a service request.
 * Specify the **problem description, date, and time** for the requested service.
 * View and track submitted requests through **My Requests**.
